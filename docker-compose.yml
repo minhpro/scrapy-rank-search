@@ -1,0 +1,42 @@
+version: '3.6'
+
+services:
+    db:
+        image: rank-search-db
+        build:
+            context: ./database
+        restart: always
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=rootpass
+            - POSTGRES_DB=rank-search
+        ports:
+            - 5433:5432
+        volumes:
+            - ./volumes/postgresql/data:/var/lib/postgresql/data
+    queue:
+        image: rabbitmq
+        restart: always
+        environment:
+            - RABBITMQ_DEFAULT_USER=admin
+            - RABBITMQ_DEFAULT_PASS=admin
+        ports:
+            - 5672:5672
+            - 15672:15672
+    web:
+        image: rank-search-web
+        build:
+            context: ./web_app
+        restart: always
+        environment:
+            - APP_SECRET_KEY=AQrGqQkC6e
+            - DB_HOST=db
+            - DB_USER=postgres
+            - DB_PASSWORD=rootpass
+            - DB_NAME=rank-search
+        ports:
+            - 5000:5000
+        depends_on:
+            - db
+
+

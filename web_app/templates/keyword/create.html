@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}New keyword{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="content">Keyword</label>
+    <input name="content" id="content"
+      value="{{ request.form['content']}}" required>
+    <label for="target_site">Target site</label>
+    <input name="target_site" id="target_site" value="{{ request.form['target_site'] }}" required>
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

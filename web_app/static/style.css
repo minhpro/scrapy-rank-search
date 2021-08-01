@@ -1,0 +1,64 @@
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2}
+
+/* Style the input fields */
+input {
+    vertical-align: middle;
+    margin: 5px 10px 5px 0;
+    padding: 8px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+/* Style the submit button */
+button {
+    padding: 10px 20px;
+    background-color: dodgerblue;
+    border: 1px solid #ddd;
+    color: white;
+}
+
+button:hover {
+    background-color: royalblue;
+}
+
+/* Add a right margin to each icon */
+.fa {
+    margin-left: -12px;
+    margin-right: 8px;
+    visibility: hidden;
+}
+
+.rank {
+    width: 30px;
+}
+
+.full-url {
+    width: 300px;
+}
+
+.inline {
+    display: inline-block;
+}
+
+input.danger { color: #cc2f2e; }
+input.warning { color: #FF7F50; }
+input[type=submit] { align-self: start; min-width: 10em; }
+
+.content form { margin: 1em 0; display: flex; flex-direction: column; }
+.content label { font-weight: bold; margin-bottom: 0.5em; }
+.content input, .content textarea { margin-bottom: 1em; }
+.flash { margin: 1em 0; padding: 1em; background: #cae6f6; border: 1px solid #377ba8; }
+
+.inactive {background-color: gray}

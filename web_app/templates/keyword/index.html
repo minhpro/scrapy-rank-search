@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Keywords{% endblock %}
+
+{% block content %}
+  <h2>Rank of your sites</h2>
+  <div style="height:70vh;overflow-x:auto;">
+      <table id="main">
+          <caption></caption>
+          <thead>
+              <tr>
+                  <th scope="col">Keyword</th>
+                  <th scope="col">Target Site</th>
+                  <th scope="col">URL</th>
+                  <th scope="col">Rank</th>
+                  <th scope="col">Last update time</th>
+                  <th scope="col">Actions</th>
+              </tr>
+          </thead>
+          <tbody id="data">
+            {% for keyword in keywords %}
+            {% if keyword['is_active'] %} <tr> {% else %} <tr class="inactive"> {% endif %}
+                <td data-label="Keyword">{{ keyword['content'] }}</td>
+                <td data-label="TargetSite">{{ keyword['target_site'] }}</td>
+                <td data-label="URL">{% if keyword['url'] == '' %} Not found {% else %} <a href="{{ keyword['url'] }}" target="_blank">{{ keyword['url'] }}</a>{% endif %}</td>
+                <td data-label="Rank">{{ keyword['rank'] }}</td>
+                <td data-label="Last update time">{{ keyword['last_update'].strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td data-label="Actions"><a class="action" href="{{ url_for('update', id=keyword['id']) }}">Edit</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+  </div>
+  <div style="width: 100%;">
+    <div class="inline">
+      <form action="{{ url_for('create') }}">
+        <button type="submit">New</button>
+      </form>
+    </div>
+    <div class="inline">
+      <form method="get" action="{{ url_for('index') }}">
+        <button type="submit" style="background-color: darkseagreen;">Refresh</button>
+      </form>
+    </div>
+</div>
+{% endblock %}
